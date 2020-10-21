@@ -1,3 +1,28 @@
+// THIS IS A FORKED COPY OF THE BELOW APP
+// ORIGINALLY BY @Tanaike (https://github.com/tanaikech/ImgApp)
+// MODIFIED BY @ttsukagoshi (https://github.com/ttsukagoshi/ImgApp)
+// UNDER THE MIT LICENSE
+// FOR THE PURPOSE OF LIMITING THE SCOPE OF THIS LIBRARY TO ONLY THE getSize() METHOD.
+// 
+// The MIT License (MIT)
+// Copyright (c) 2017 Kanshi TANAIKE
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
+// associated documentation files (the "Software"), to deal in the Software without restriction, 
+// including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all copies or substantial
+// portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
 /**
  * Title  ImgApp<br>
  * Author  Tanaike<br>
@@ -29,9 +54,11 @@ function getSize(blob) {
  * @param {integer} width Resized width you want
  * @return {Object} JSON object {blob: [blob], originalwidth: ###, originalheight: ###, resizedwidth: ###, resizedheight: ###}
  */
+/*
 function doResize(fileId, width) {
   return new ImgApp().DoResize(fileId, width)
 }
+*/
 
 /**
  * Update a thumbnail of a file using an image.<br>
@@ -47,9 +74,11 @@ function doResize(fileId, width) {
  * @param {string} srcFileId File ID of file, which is updated thumbnail, on Google Drive
  * @return {Object} JSON object id,mimeType,name,thumbnailVersion,thumbnailLink
  */
+/*
 function updateThumbnail(imgFileId, srcFileId) {
   return new ImgApp().UpdateThumbnail(imgFileId, srcFileId)
 }
+*/
 
 /**
  * This method is for editing images. In the current stage, the image can be cropped. And several images can be merged as an image.<br>
@@ -60,21 +89,23 @@ function updateThumbnail(imgFileId, srcFileId) {
  * @param {Object} object Object for using this method.
  * @return {Object} Blob of result image.
  */
+/*
 function editImage(object) {
   return new ImgApp().EditImage(object)
 }
-;
+*/
+
 (function (r) {
   var ImgApp;
   ImgApp = (function () {
-    var GetImage, GetResizedSize, byte2hex, byte2hexNum, byte2num, cropImage, fetch, getFormat, getImageFromSlide, getInfBMP, getInfGIF, getInfJPG, getInfPNG, hex2num, mergeImages, pixelToEmu, pixelToPt, ptToEmu, ptToPixel;
-
+    var byte2hex, byte2hexNum, byte2num, getFormat, getInfBMP, getInfGIF, getInfJPG, getInfPNG, hex2num;
+    // var GetImage, GetResizedSize, cropImage, fetch, getImageFromSlide, mergeImages, pixelToEmu, pixelToPt, ptToEmu, ptToPixel;
     ImgApp.name = "ImgApp";
 
     function ImgApp(blob) {
       this.bytear = [];
     }
-
+    /*
     ImgApp.prototype.EditImage = function (obj_) {
       if (obj_.hasOwnProperty("blob") && obj_.hasOwnProperty("crop") && obj_.blob.toString() === "Blob" && typeof obj_.crop === "object") {
         return cropImage.call(this, obj_);
@@ -84,7 +115,6 @@ function editImage(object) {
         throw new Error("Wrong object. Please confirm it again.");
       }
     };
-
     mergeImages = function (obj_) {
       var canvas, croppedBlob, object, presentationId, rs, slide, slides;
       canvas = obj_.merge.reduce((function (_this) {
@@ -352,7 +382,7 @@ function editImage(object) {
         reheight: rh
       };
     };
-
+    */
     ImgApp.prototype.GetSize = function (blob) {
       var res;
       this.bytear = (function (blob) {
@@ -477,7 +507,7 @@ function editImage(object) {
     hex2num = function (data) {
       return parseInt(data.join(""), 16);
     };
-
+    /*
     fetch = function (url, method, payload, headers) {
       var e, res;
       try {
@@ -499,7 +529,7 @@ function editImage(object) {
       }
       return r;
     };
-
+    */
     return ImgApp;
 
   })();
