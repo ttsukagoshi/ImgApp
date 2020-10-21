@@ -64,9 +64,9 @@ function editImage(object) {
   return new ImgApp().EditImage(object)
 }
 ;
-(function(r) {
+(function (r) {
   var ImgApp;
-  ImgApp = (function() {
+  ImgApp = (function () {
     var GetImage, GetResizedSize, byte2hex, byte2hexNum, byte2num, cropImage, fetch, getFormat, getImageFromSlide, getInfBMP, getInfGIF, getInfJPG, getInfPNG, hex2num, mergeImages, pixelToEmu, pixelToPt, ptToEmu, ptToPixel;
 
     ImgApp.name = "ImgApp";
@@ -75,7 +75,7 @@ function editImage(object) {
       this.bytear = [];
     }
 
-    ImgApp.prototype.EditImage = function(obj_) {
+    ImgApp.prototype.EditImage = function (obj_) {
       if (obj_.hasOwnProperty("blob") && obj_.hasOwnProperty("crop") && obj_.blob.toString() === "Blob" && typeof obj_.crop === "object") {
         return cropImage.call(this, obj_);
       } else if (obj_.hasOwnProperty("merge") && Array.isArray(obj_.merge) && Array.isArray(obj_.merge[0])) {
@@ -85,15 +85,15 @@ function editImage(object) {
       }
     };
 
-    mergeImages = function(obj_) {
+    mergeImages = function (obj_) {
       var canvas, croppedBlob, object, presentationId, rs, slide, slides;
-      canvas = obj_.merge.reduce((function(_this) {
-        return function(o, r) {
+      canvas = obj_.merge.reduce((function (_this) {
+        return function (o, r) {
           var ar, mHeight, mWidth;
           mWidth = 0;
           mHeight = 0;
           ar = [];
-          r.forEach(function(c) {
+          r.forEach(function (c) {
             var temp;
             if (c && c.toString() === "Blob") {
               temp = _this.GetSize(c);
@@ -141,8 +141,8 @@ function editImage(object) {
       presentationId = (new SlidesAppp("create")).createNewSlidesWithPageSize(object);
       slides = SlidesApp.openById(presentationId);
       slide = slides.getSlides()[0];
-      canvas.images.forEach(function(r) {
-        r.forEach(function(c) {
+      canvas.images.forEach(function (r) {
+        r.forEach(function (c) {
           if (c) {
             slide.insertImage(c.blob, pixelToPt.call(this, c.left), pixelToPt.call(this, c.top), pixelToPt.call(this, c.width), pixelToPt.call(this, c.height));
           }
@@ -158,7 +158,7 @@ function editImage(object) {
       return croppedBlob;
     };
 
-    cropImage = function(obj_) {
+    cropImage = function (obj_) {
       var _, b, croppedBlob, height, l, object, presentationId, ref, rs, setHeight, setL, setT, setWidth, size, slide, slides, t, unit, width;
       unit = obj_.hasOwnProperty("unit") && typeof obj_.unit === "string" ? obj_.unit : "pixel";
       size = this.GetSize(obj_.blob);
@@ -167,7 +167,7 @@ function editImage(object) {
       }
       width = obj_.unit === "point" ? pixelToPt.call(this, size.width) : size.width;
       height = obj_.unit === "point" ? pixelToPt.call(this, size.height) : size.height;
-      ref = ["t", "b", "l", "r"].map(function(k) {
+      ref = ["t", "b", "l", "r"].map(function (k) {
         if (obj_.crop.hasOwnProperty(k)) {
           return Number(obj_.crop[k]);
         } else {
@@ -203,23 +203,23 @@ function editImage(object) {
       return croppedBlob;
     };
 
-    ptToPixel = function(pt_) {
+    ptToPixel = function (pt_) {
       return pt_ * 1.33333;
     };
 
-    ptToEmu = function(pt_) {
+    ptToEmu = function (pt_) {
       return pt_ * 12700;
     };
 
-    pixelToPt = function(pixel_) {
+    pixelToPt = function (pixel_) {
       return pixel_ * 0.75;
     };
 
-    pixelToEmu = function(pixel_) {
+    pixelToEmu = function (pixel_) {
       return pixel_ * 0.75 * 12700;
     };
 
-    getImageFromSlide = function(presentationId, slideId, rs, filename) {
+    getImageFromSlide = function (presentationId, slideId, rs, filename) {
       var croppedBlob, e, er, resObj, url;
       croppedBlob = null;
       try {
@@ -246,7 +246,7 @@ function editImage(object) {
       return croppedBlob;
     };
 
-    ImgApp.prototype.UpdateThumbnail = function(imgFileId_, srcFileId_) {
+    ImgApp.prototype.UpdateThumbnail = function (imgFileId_, srcFileId_) {
       var boundary, data, fields, headers, img4thumb, metadata, method, mime, payload, url;
       if (imgFileId_ == null) {
         throw new Error("No image file ID.");
@@ -284,7 +284,7 @@ function editImage(object) {
       return fetch.call(this, url, method, payload, headers);
     };
 
-    ImgApp.prototype.DoResize = function(fileId, width) {
+    ImgApp.prototype.DoResize = function (fileId, width) {
       var blob, e, headers, method, mimetype, n, res, resized, rs, thumbUrl, turl, url;
       try {
         url = "https://www.googleapis.com/drive/v3/files/" + fileId + "?fields=thumbnailLink%2CmimeType";
@@ -325,7 +325,7 @@ function editImage(object) {
       };
     };
 
-    GetImage = function(turl) {
+    GetImage = function (turl) {
       return UrlFetchApp.fetch(turl, {
         headers: {
           Authorization: "Bearer " + ScriptApp.getOAuthToken()
@@ -333,7 +333,7 @@ function editImage(object) {
       }).getBlob();
     };
 
-    GetResizedSize = function(blob, width) {
+    GetResizedSize = function (blob, width) {
       var oh, ow, rh, rw, size;
       size = this.GetSize(blob);
       ow = size.width;
@@ -353,9 +353,9 @@ function editImage(object) {
       };
     };
 
-    ImgApp.prototype.GetSize = function(blob) {
+    ImgApp.prototype.GetSize = function (blob) {
       var res;
-      this.bytear = (function(blob) {
+      this.bytear = (function (blob) {
         var e;
         try {
           return blob.getBytes();
@@ -386,7 +386,7 @@ function editImage(object) {
       return res;
     };
 
-    getInfBMP = function() {
+    getInfBMP = function () {
       return {
         identification: "BMP",
         width: byte2num(this.bytear.slice(18, 22), true),
@@ -395,7 +395,7 @@ function editImage(object) {
       };
     };
 
-    getInfGIF = function() {
+    getInfGIF = function () {
       return {
         identification: "GIF",
         width: byte2num(this.bytear.slice(6, 8), true),
@@ -404,7 +404,7 @@ function editImage(object) {
       };
     };
 
-    getInfPNG = function() {
+    getInfPNG = function () {
       return {
         identification: "PNG",
         width: byte2num(this.bytear.slice(16, 20), false),
@@ -413,7 +413,7 @@ function editImage(object) {
       };
     };
 
-    getInfJPG = function() {
+    getInfJPG = function () {
       var i, ma;
       i = 0;
       while (i < this.bytear.length) {
@@ -436,30 +436,30 @@ function editImage(object) {
       };
     };
 
-    getFormat = function() {
+    getFormat = function () {
       var f;
       f = (byte2hex.call(this, this.bytear.slice(0, 8))).join("");
       this.format = f.slice(0, 16) === "89504e470d0a1a0a" ? "png" : f.slice(0, 4) === "ffd8" ? "jpg" : f.slice(0, 6) === "474946" ? "gif" : f.slice(0, 4) === "424d" ? "bmp" : "Cannot retrieve image size. Now, it can retrive image size from png, jpg, gif and bmp.";
     };
 
-    byte2hexNum = function(data) {
+    byte2hexNum = function (data) {
       var conv;
       conv = (data < 0 ? data + 256 : data).toString(16);
       return (conv.length === 1 ? "0" + conv : conv);
     };
 
-    byte2hex = function(data) {
-      return data.map(function(e) {
+    byte2hex = function (data) {
+      return data.map(function (e) {
         return (e < 0 ? e + 256 : e).toString(16);
-      }).map(function(e) {
+      }).map(function (e) {
         return (e.length === 1 ? "0" + e : e);
       });
     };
 
-    byte2num = function(data, byteorder) {
+    byte2num = function (data, byteorder) {
       var conv;
       if (byteorder) {
-        conv = data.reduceRight(function(ar, e) {
+        conv = data.reduceRight(function (ar, e) {
           var temp;
           temp = (e < 0 ? e + 256 : e).toString(16);
           if (temp.length === 1) {
@@ -474,11 +474,11 @@ function editImage(object) {
       return hex2num.call(this, conv);
     };
 
-    hex2num = function(data) {
+    hex2num = function (data) {
       return parseInt(data.join(""), 16);
     };
 
-    fetch = function(url, method, payload, headers) {
+    fetch = function (url, method, payload, headers) {
       var e, res;
       try {
         res = UrlFetchApp.fetch(url, {
