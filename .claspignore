@@ -1,0 +1,14 @@
+# clasp
+.clasp.json
+
+# git
+.git/*
+.gitignore
+LICENCE
+README.md
+
+# misc
+images/*
+src/*
+.codeclimate.yml
+SlidesAppp.js
