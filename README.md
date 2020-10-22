@@ -1,5 +1,11 @@
 <a name="top"></a>
 
+<blockquote>
+<p>This is a forked copy of <a href="https://github.com/tanaikech/ImgApp">tanaikech/ImgApp</a>, simplified for the purpose of using <code>getSize()</code> only and to limit the scope of OAuth authorization to <code>https://www.googleapis.com/auth/drive.readonly</code>.</p>
+<p>To use this modified version of the library, enter the script ID <code>1PZwZxlM1yuk9nRFTxyKsz2vviIW9dWq4bdy6CndFM0VFEsbyfZOoqrTL</code> in place of the original ID in <a href="#how-to-install">How to install</a> below. The default identifier for the simplified library is <code>ImgAppR</code>.</p>
+<p>Note that the README contents below are left unedited for reference purposes.</p>
+</blockquote>
+
 # ImgApp
 
 [![Code Climate](https://codeclimate.com/github/tanaikech/ImgApp/badges/gpa.svg)](https://codeclimate.com/github/tanaikech/ImgApp)
